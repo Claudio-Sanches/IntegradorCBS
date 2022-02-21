@@ -1,0 +1,13 @@
+/* Reset css */
+/**{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+  }*/
+  footer#rodape{
+    clear: both;
+    padding-right: 20px;
+  }
+  footer#rodape h6{
+    text-align: center;
+  }
