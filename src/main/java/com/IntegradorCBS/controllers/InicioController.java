@@ -16,15 +16,15 @@ import com.IntegradorCBS.repository.ClienteRepository;
 
 @Controller
 public class InicioController {
-	
-	
+
+
 	//GET
 	@RequestMapping("/inicioManutencao")
 	public ModelAndView abrirManutencao() {
 		ModelAndView mv = new ModelAndView("form-manutencao");
 		return mv;
 	}
-	
+
 	//GET
 	@RequestMapping("/inicioGestao")
 	public ModelAndView abrirGestao() {

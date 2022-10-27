@@ -1,6 +1,7 @@
 package com.IntegradorCBS.models;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,21 +11,23 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.lang.NonNull;
+
 @Entity
 public class Ssd implements Serializable{
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@NotEmpty
 	private String descricao;
-	
-	@NotEmpty
-	private String valor;
-	
+
+	@NonNull
+	private BigDecimal valor;
+
 	@ManyToOne Estado estado;
 
 	public long getId() {
@@ -43,11 +46,11 @@ public class Ssd implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public String getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
 
-	public void setValor(String valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 
@@ -59,6 +62,6 @@ public class Ssd implements Serializable{
 		this.estado = estado;
 	}
 
-	
-	
+
+
 }

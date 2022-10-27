@@ -8,13 +8,15 @@ import com.IntegradorCBS.models.Estado;
 
 
 public interface EstadoRepository extends CrudRepository<Estado, Long> {
-		
+
 	Estado findById(long id);
-	
+
 	Estado findBySigla(String sigla);
 
 	// Query para a busca
-	@Query(value = "select u from Estado u where u.descricao like %?1%")
-	List<Estado> findBydescricao(String descricao);
+	@Query(value = "select u from Estado u where u.sigla like %?1%")
+	List<Estado> findBySiglas(String sigla);
 
 }
+
+

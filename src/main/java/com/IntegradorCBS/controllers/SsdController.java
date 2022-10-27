@@ -16,16 +16,16 @@ import com.IntegradorCBS.repository.SsdRepository;
 
 @Controller
 public class SsdController {
-	
+
 	@Autowired
 	private SsdRepository sr;
-	
+
 	// GET que chama o form para cadastrar ssd
 	@RequestMapping("/cadastrarSsd")
 	public String form() {
 		return "ssd/form-ssd";
 	}
-	
+
 	// POST que cadastra ssd
 	@RequestMapping(value = "/cadastrarSsd", method = RequestMethod.POST)
 	public String form(@Valid Ssd ssd, BindingResult result, RedirectAttributes attributes) {
@@ -44,7 +44,7 @@ public class SsdController {
 		attributes.addFlashAttribute("mensagem", "SSD cadastrado com sucesso!");
 		return "redirect:/cadastrarSsd";
 	}
-	
+
 	// GET que lista SSD
 	@RequestMapping("/ssds")
 	public ModelAndView listaSsds() {
@@ -53,7 +53,7 @@ public class SsdController {
 		mv.addObject("ssds", ssds);
 		return mv;
 	}
-	
+
 	// GET que lista detalhes do SSd
 	@RequestMapping("/detalhes-ssd/{id}")
 	public ModelAndView detalhesSsd(@PathVariable("id") long id) {
@@ -64,16 +64,16 @@ public class SsdController {
 		return mv;
 
 	}
-	
+
 	//GET que deleta SSD
 	@RequestMapping("/deletarSsd")
 	public String deletarSsd(long id) {
 		Ssd ssd = sr.findById(id);
 		sr.delete(ssd);
 		return "redirect:/ssds";
-		
+
 	}
-	
+
 	// Métodos que atualiza SSD
 	// GET que chama o FORM de edição do SSD
 	@RequestMapping("/editar-ssd")
@@ -83,18 +83,18 @@ public class SsdController {
 		mv.addObject("ssd", ssd);
 		return mv;
 	}
-	
+
 	// POST que atualiza os SSD
 	@RequestMapping(value = "/editar-ssd", method = RequestMethod.POST)
 	public String updateSsd(@Valid Ssd ssd,  BindingResult result, RedirectAttributes attributes){
-		
+
 		sr.save(ssd);
 		attributes.addFlashAttribute("success", "SSD alterado com sucesso!");
-		
+
 		long idLong = ssd.getId();
 		String id = "" + idLong;
 		return "redirect:/detalhes-ssd/" + id;
-		
+
 	}
 
 

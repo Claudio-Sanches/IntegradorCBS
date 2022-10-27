@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>App Integrador CBS</title>
+    <title>| App Integrador CBS UC 12 |</title>
 
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -24,12 +24,11 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <title>| App Integrador CBS- UC 12 |</title>
+    <title>| App Integrador CBS - UC 12 |</title>
 
 </head>
 
 <body>
-
 
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -41,13 +40,13 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a class="navbar-brand" href="/"><img src="./_imagem/logo.svg"
+                <a class="navbar-brand" href="/"><img src="/_imagem/logo.svg"
                                                       alt="" width="130" height="130"></a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active"
                                             aria-current="page" href="/">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/inicioGestao">Gestao</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link"
+                                            href="/inicioManutencao">Manutencao</a></li>
                     <li class="nav-item"><a class="nav-link" href="/logout">Sair</a></li>
                 </ul>
 
@@ -62,50 +61,47 @@
 <div class="container">
 
     <div class="card-header">
-        <h3>Lista de Carrinhos</h3>
+        <h3>Informações da Tabela de Preço:</h3>
     </div>
 
     <br>
 
-    <table class="table table-hover table-responsive w-auto table-striped">
-        <thead>
-        <tr>
-            <th scope="col">Cliente:</th>
-            <th scope="col">Uso:</th>
-            <th scope="col">Produto:</th>
-            <th scope="col">Quantidade:</th>
-            <th scope="col">SSD:</th>
-            <th scope="col">Memoria:</th>
-            <th scope="col"></th>
-            <th scope="col">Ação</th>
-            <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="karrinho : ${karrinhos}">
+    <div class="container" th:each="tabela : ${tabelas}">
 
-            <td><a
-                    th:href="${(#mvc.url('KC#detalhesKarrinho').arg(0, karrinho.id)).build()}"><span
-                    th:text="${karrinho.cliente}"></span></a></td>
-            <td><span th:text="${karrinho.uso}"></span></td>
-            <td><span th:text="${karrinho.produto}"></span></td>
-            <td><span th:text="${karrinho.quantidade}"></span></td>
-            <td><span th:text="${karrinho.ssd}"></span></td>
-            <td><span th:text="${karrinho.memoria}"></span></td>
-            <td><a
-                    th:href="${(#mvc.url('KC#deletarKarrinho').arg(0, karrinho.id)).build()}"
-                    class="waves-effect waves-light btn-small"><button
-                    type="button" class="btn btn-danger">Excluir</button></a></td>
-            <td><a
-                    th:href="${(#mvc.url('KC#editarKarrinho').arg(0, karrinho.id)).build()}"><button
-                    type="button" class="btn btn-primary">Editar</button></a></td>
+        <br>
 
-        </tr>
-        </tbody>
-    </table>
+        <p>
+            <b>ID:</b> <span th:text="${tabela.id}"></span>
+        </p>
+
+        <p>
+            <b>UF:</b> <span th:text="${tabela.uf}"></span>
+        </p>
+        <p>
+            <b>Aplicacao:</b> <span th:text="${tabela.aplicacao}"></span>
+        </p>
+        <p>
+            <b>Descricao:</b> <span th:text="${tabela.descricao}"></span>
+        </p>
+        <p>
+            <b>Valor:</b> <span th:text="${tabela.valor}"></span>
+        </p>
+        <p>
+            <b>Modelo SSD:</b> <span th:text="${tabela.descricaossd}"></span>
+
+            <b>Valor:</b> <span th:text="${tabela.valorssd}"></span>
+        </p>
+        <p>
+            <b>Modelo Memoria:</b> <span th:text="${tabela.descricaomemoria}"></span>
+
+            <b>Valor da Memoria:</b> <span th:text="${tabela.valormemoria}"></span>
+        </p>
+
+        <br> <br>
+
+    </div>
+
 </div>
-<br>
-
 
 <hr>
 
@@ -125,9 +121,7 @@
         crossorigin="anonymous">
 
 </script>
-<link rel="stylesheet" type="text/css" href="./_css/estilo.css">
-
-
+<link rel="stylesheet" type="text/css" href="/_css/estilo.css">
 </body>
 
 </html>

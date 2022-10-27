@@ -1,34 +1,34 @@
 package com.IntegradorCBS.models;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
+import org.springframework.lang.NonNull;
+
+import java.math.BigDecimal;
 
 @Entity
 public class Produto implements Serializable{
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@NotEmpty
 	private String aplicacao;
-	
+
 	@NotEmpty
 	private String descricao;
-	
-	@NotEmpty
-	private float valor;
-	
+
+	@NonNull
+	private BigDecimal valor;
+
 	@ManyToOne Estado estado;
 
 	public long getId() {
@@ -55,11 +55,11 @@ public class Produto implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public float getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
 
-	public void setValor(float valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 
@@ -71,5 +71,5 @@ public class Produto implements Serializable{
 		this.estado = estado;
 	}
 
-	
+
 }

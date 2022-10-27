@@ -13,11 +13,15 @@ import com.IntegradorCBS.models.Estado;
 import com.IntegradorCBS.models.Memoria;
 import com.IntegradorCBS.models.Produto;
 import com.IntegradorCBS.models.Ssd;
+import com.IntegradorCBS.models.Opedido;
 
 import com.IntegradorCBS.repository.ClienteRepository;
-import com.IntegradorCBS.repository.PedidoRepository;
+import com.IntegradorCBS.repository.OpedidoRepository;
 import com.IntegradorCBS.repository.EstadoRepository;
 import com.IntegradorCBS.repository.SsdRepository;
+import com.IntegradorCBS.repository.MemoriaRepository;
+import com.IntegradorCBS.repository.ProdutoRepository;
+import com.IntegradorCBS.repository.KarrinhoRepository;
 
 @Controller
 public class BuscaController {
@@ -26,13 +30,22 @@ public class BuscaController {
 	private ClienteRepository cr;
 
 	@Autowired
-	private PedidoRepository pr;
+	private OpedidoRepository or;
 
 	@Autowired
 	private EstadoRepository er;
 
 	@Autowired
 	private SsdRepository sr;
+
+	@Autowired
+	private MemoriaRepository mr;
+
+	@Autowired
+	private ProdutoRepository pr;
+
+	@Autowired
+	private KarrinhoRepository kr;
 
 	// GET em form Gestão
 	@RequestMapping(value = "/inicioGestao", method = RequestMethod.GET)
@@ -43,20 +56,24 @@ public class BuscaController {
 
 	// POST em form Gestão
 	@RequestMapping(value = "/inicioGestao", method = RequestMethod.POST)
-	public ModelAndView buscarGestao(@RequestParam("buscar") String buscar, @RequestParam("nome") String nome) {
+	public ModelAndView buscarGestao(@RequestParam("buscarGes") String buscarGes, @RequestParam("nomeGes") String nomeGes) {
 
 		ModelAndView mv = new ModelAndView("form-gestao");
-		String mensagem = "Resultados da busca por " + buscar;
+		String mensagem = "Resultados da busca por " + buscarGes;
 
-		if (nome.equals("nomecliente")) {
-			mv.addObject("clientes", cr.findByNomes(buscar));
+		if (nomeGes.equals("nomecliente")) {
+			mv.addObject("clientes", cr.findByClientes(buscarGes));
 
-		} else if (nome.equals("nomepedido")) {
-			mv.addObject("pedidos", pr.findByCliente(buscar));
+		}else if (nomeGes.equals("nomecarrinho")) {
+			mv.addObject("karrinhos", kr.findByclienteKarrinho(buscarGes));
+
+		} else if (nomeGes.equals("nomeopedido")) {
+			mv.addObject("opedidos", or.findBydescOpedido(buscarGes));
 
 		} else {
-			mv.addObject("clientes", cr.findByNomes(buscar));
-			mv.addObject("pedidos", pr.findByCliente(buscar));
+			mv.addObject("clientes", cr.findByClientes(buscarGes));
+			mv.addObject("opedidos", or.findBydescOpedido(buscarGes));
+			mv.addObject("karrinhos", kr.findByclienteKarrinho(buscarGes));
 		}
 
 		mv.addObject("mensagem", mensagem);
@@ -79,14 +96,22 @@ public class BuscaController {
 		String mensagem = "Resultados da busca por " + buscar;
 
 		if (nome.equals("nomeestado")) {
-			mv.addObject("estado", er.findBydescricao(buscar));
+			mv.addObject("estados", er.findBySiglas(buscar));
 
 		}else if(nome.equals("nomessd")) {
-			 mv.addObject("ssds", sr.findBydescricaoSsds(buscar));
+			mv.addObject("ssds", sr.findBydescricaoSsd(buscar));
+
+		}else if(nome.equals("nomememoria")) {
+			mv.addObject("memorias", mr.findBydescricaoMemoria(buscar));
+
+		}else if(nome.equals("nomeproduto")) {
+			mv.addObject("produtos", pr.findByaplicacao(buscar));
 
 		}else {
-			mv.addObject("estado", er.findBydescricao(buscar));
-			mv.addObject("ssds", sr.findBydescricaoSsds(buscar));
+			mv.addObject("estados", er.findBySiglas(buscar));
+			mv.addObject("ssds", sr.findBydescricaoSsd(buscar));
+			mv.addObject("memorias", mr.findBydescricaoMemoria(buscar));
+			mv.addObject("produtos", pr.findByaplicacao(buscar));
 		}
 
 		mv.addObject("mensagem", mensagem);

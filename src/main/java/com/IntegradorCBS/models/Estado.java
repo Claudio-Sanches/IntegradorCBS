@@ -8,41 +8,47 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.math.BigDecimal;
 
 import javax.validation.constraints.NotEmpty;
+
+import org.springframework.lang.NonNull;
 
 @Entity
 public class Estado implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-		
+
 	@NotEmpty
 	private String sigla;
-		
+
 	@NotEmpty
 	private String descricao;
-	
+
+	@NonNull
+	private BigDecimal Fator;
+
 	@OneToMany(mappedBy = "estado", cascade = CascadeType.REMOVE)
 	private List<Cliente> clientes;
-	
+
 	@OneToMany(mappedBy = "estado", cascade = CascadeType.REMOVE)
 	private List<Produto> produtos;
-	
-	@OneToMany(mappedBy = "estado", cascade = CascadeType.REMOVE)
-	private List<Pedido> pedidos;
-	
+
+	//@OneToMany(mappedBy = "estado", cascade = CascadeType.REMOVE)
+	//private List<Order> orders;
+
 	@OneToMany(mappedBy = "estado", cascade = CascadeType.REMOVE)
 	private List<Ssd> ssds;
-	
+
 	@OneToMany(mappedBy = "estado", cascade = CascadeType.REMOVE)
 	private List<Memoria> memorias;
-	
+
 	@OneToMany(mappedBy = "estado", cascade = CascadeType.REMOVE)
-	private List<Carrinho> carrinhos;
+	private List<Karrinho> karrinhos;
 
 	public long getId() {
 		return id;
@@ -68,6 +74,14 @@ public class Estado implements Serializable {
 		this.descricao = descricao;
 	}
 
+	public BigDecimal getFator() {
+		return Fator;
+	}
+
+	public void setFator(BigDecimal fator) {
+		Fator = fator;
+	}
+
 	public List<Cliente> getClientes() {
 		return clientes;
 	}
@@ -84,13 +98,13 @@ public class Estado implements Serializable {
 		this.produtos = produtos;
 	}
 
-	public List<Pedido> getPedidos() {
-		return pedidos;
-	}
+	//public List<Order> getOrders() {
+	//	return orders;
+	//}
 
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
-	}
+	//public void setOrders(List<Order> orders) {
+	//	this.orders = orders;
+	//}
 
 	public List<Ssd> getSsds() {
 		return ssds;
@@ -108,13 +122,12 @@ public class Estado implements Serializable {
 		this.memorias = memorias;
 	}
 
-	public List<Carrinho> getCarrinhos() {
-		return carrinhos;
+	public List<Karrinho> getKarrinhos() {
+		return karrinhos;
 	}
 
-	public void setCarrinhos(List<Carrinho> carrinhos) {
-		this.carrinhos = carrinhos;
+	public void setKarrinhos(List<Karrinho> karrinhos) {
+		this.karrinhos = karrinhos;
 	}
-
 
 }

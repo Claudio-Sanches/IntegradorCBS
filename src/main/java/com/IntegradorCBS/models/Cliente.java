@@ -13,32 +13,32 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Cliente implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-		
+
 	@NotEmpty
 	private String email;
-		
+
 	@NotEmpty
 	private String cpfcnpj;
-		
+
 	@NotEmpty
 	private String nome;
-	
+
+	private String telefone;
+	private String celular;
 	private String cep;
 	private String rua;
 	private String numero;
 	private String complemento;
 	private String bairro;
 	private String cidade;
-	private String tel;
-	private String tel_cel;
-	private String senha;
-	
+	private String uf;
+
 	@ManyToOne Estado estado;
 
 	public long getId() {
@@ -71,6 +71,22 @@ public class Cliente implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 
 	public String getCep() {
@@ -121,28 +137,12 @@ public class Cliente implements Serializable {
 		this.cidade = cidade;
 	}
 
-	public String getTel() {
-		return tel;
+	public String getUf() {
+		return uf;
 	}
 
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
-
-	public String getTel_cel() {
-		return tel_cel;
-	}
-
-	public void setTel_cel(String tel_cel) {
-		this.tel_cel = tel_cel;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
 
 	public Estado getEstado() {
@@ -152,5 +152,5 @@ public class Cliente implements Serializable {
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
-	
+
 }

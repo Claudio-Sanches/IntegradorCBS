@@ -45,15 +45,14 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/">Inicio</a></li>
-					<li class="nav-item"><a class="nav-link" href="/inicioGestao">Gestao</a>
-					</li>
+					<li class="nav-item"><a class="nav-link"
+											href="/inicioManutencao">Manutencao</a></li>
 					<li class="nav-item"><a class="nav-link" href="/logout">Sair</a></li>
 				</ul>
 
 			</div>
 		</div>
 	</nav>
-
 </header>
 
 <br>
@@ -61,7 +60,7 @@
 <div class="container">
 
 	<div class="card-header">
-		<h3>Atualizar Pedido</h3>
+		<h3>Atualizar Produto</h3>
 	</div>
 
 	<br>
@@ -71,56 +70,43 @@
 	<form method="post">
 
 		<div class="row">
-			<div class="form-group">
-				<label for=""><b>Cliente:</b> </label> <input type="text"
-															  class="form-control" value="" name="cliente" required
-															  th:attr="value = ${opedido.cliente}" />
-			</div>
-		</div>
-		<div class="row">
-			<div class="form-group">
-				<label for=""><b>Uso:</b> </label> <input type="text"
-														  class="form-control" value="" name="uso" required
-														  th:attr="value = ${opedido.uso}" />
-			</div>
-		</div>
-		<div class="row">
 			<div class="col">
-				<div class="form-group">
-					<label for=""><b>Produto:</b></label>
-					<textarea class="form-control" name="produto" maxlength="254"
-							  rows="3" required th:text="${opedido.produto}"></textarea>
-				</div>
+				<label for=""><b>Selecione o uso :</b></label>
+				<select class="form-sect w-100" name="aplicacao" id="aplicacao" required >
+					<option name="">Escolher...</option>
+					<option name="aplicacao">Pessoal</option>
+					<option name="aplicacao">Profissional</option>
+					<option name="aplicacao">Gamer</option>
+					<option name="aplicacao">Acessório</option>
+				</select>
 			</div>
 		</div>
 
+		<br>
+
 		<div class="row">
+
 			<div class="col">
 				<div class="form-group">
-					<label for=""><b>SSD:</b></label> <input type="text"
-															 class="form-control" name="ssd" required
-															 th:attr="value = ${opedido.ssd}" />
+					<label for=""><b>Descrição:</b></label>
+					<textarea class="form-control" name="descricao" maxlength="254"
+							  rows="3" required th:text="${produto.descricao}" ></textarea>
 				</div>
 			</div>
+
 			<div class="col">
 				<div class="form-group">
-					<label for=""><b>Memoria:</b></label> <input type="text"
-																 class="form-control" name="memoria" required
-																 th:attr="value = ${opedido.memoria}" />
-				</div>
-			</div>
-			<div class="col">
-				<div class="form-group">
-					<label for=""><b>Quantidade:</b></label> <input type="text"
-																	class="form-control" value="" name="quantidade" required
-																	th:attr="value = ${opedido.quantidade}" />
+					<label for=""><b>Valor:</b></label> <input type="text"
+															   class="form-control" value="" name="valor" required
+															   th:attr="value = ${produto.valor}" />
 				</div>
 			</div>
 
 		</div>
+
 
 		<button type="submit" class="btn btn-success">Atualizar
-			Pedido</button>
+			Produto</button>
 	</form>
 </div>
 
@@ -129,7 +115,7 @@
 
 <footer id="rodape">
 	<h6>
-		<img class="img-fluid" src="/_imagem/lg_Claudio1.jpg">
+		<img class="img-fluid" src="./_imagem/lg_Claudio1.jpg">
 	</h6>
 </footer>
 
